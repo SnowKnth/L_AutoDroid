@@ -90,7 +90,7 @@ class InputManager(object):
             input_policy.master = master
         return input_policy
 
-    def add_event(self, event):
+    def add_event(self, event, send_event=True):
         """
         add one event to the event list
         :param event: the event to be added, should be subclass of AppEvent
@@ -101,7 +101,7 @@ class InputManager(object):
         self.events.append(event)
 
         event_log = EventLog(self.device, self.app, event, self.profiling_method)
-        event_log.start()
+        event_log.start(send_event)
         while True:
             time.sleep(self.event_interval)
             if not self.device.pause_sending_event:

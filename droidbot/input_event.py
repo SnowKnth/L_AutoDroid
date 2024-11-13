@@ -227,7 +227,7 @@ class EventLog(object):
                 return True
         return False
 
-    def start(self):
+    def start(self, send_event=True):
         """
         start sending event
         """
@@ -235,7 +235,8 @@ class EventLog(object):
         self.start_profiling()
         self.event_str = self.event.get_event_str(self.from_state)
         print("Action: %s" % self.event_str)
-        self.device.send_event(self.event)
+        if send_event:
+            self.device.send_event(self.event)
 
     def start_profiling(self):
         """
