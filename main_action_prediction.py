@@ -103,7 +103,7 @@ def predict_ui_actions(first_n_episodes: int = 0):
 
             if target_view is None:
                 target_view = ""
-            action_history.append(get_action_descv2(action, target_view))
+            action_history.append(get_action_descv2(action, target_view)) # by wxd, 这里的历史是不是应该用ground truth的？而不是预测的！因为预测的有误差后就不会到达当前的vh状态了
             thought_history.append(thought)
 
 

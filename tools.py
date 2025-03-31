@@ -732,6 +732,15 @@ def get_action_from_views_actions(
 
     idx = int(idx)
     selected_action = candidate_actions[idx]
+    
+    # not enabled in llamatouch version
+    # if isinstance(selected_action, SetTextEvent):
+    # if input_text != "N/A" and input_text != None:
+    #     selected_action.text = input_text.replace('"', '').replace(' ', '-') # by wxd. Should the second replace happen here?
+    #     if len(selected_action.text) > 30:  # heuristically disable long text input
+    #         selected_action.text = ''
+    # else:
+    #     selected_action.text = ''
 
     selected_view_description = get_item_properties_from_id(
         ui_state_desc=state_prompt, view_id=idx
@@ -762,7 +771,8 @@ def query_gpt(prompt):
         # model="gpt-4-0125-preview",
         # model="gpt-4o-2024-05-13",
         # model="gpt-4o",
-        model="gpt-3.5-turbo",
+        # model="gpt-3.5-turbo",
+        model="deepseek-chat",
         temperature=0,
         seed=0x1110,
         timeout=60,

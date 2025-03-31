@@ -68,4 +68,6 @@ output/
 debug.py
 .env
 exec_output/
+exec_output*
+drb_output*
 predicted_actions/
