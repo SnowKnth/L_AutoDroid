@@ -25,7 +25,7 @@ emulator_controller_args = {
         "no-window" : "true",  # Change this to "true" to run the emulator without GUI.
     }
 first_n_episodes=int(os.environ.get("FIRST_N_EPISODES", 495))
-range_pair = (38, 495)
+range_pair = (278, 495) # set (38,495) for AutoDroid/exec_output_llamatouch_autodroid_deepseek
 # response = requests.get(TASK_METADATA_URL)
 # with open(TASK_METADATA_PATH, "w") as f:
 #     f.write(response.content)
@@ -36,7 +36,7 @@ def run_on_agentenv():
     ac = AndroidController(
         avd_name=AVD_NAME,
         emulator_controller_args=emulator_controller_args,
-        local_output_path="exec_output_llamatouch_autodroid_deepseek",
+        local_output_path="exec_output_llamatouch_autodroid_deepseek_with_sleep_5s",
         max_steps=30,
         instruction_fp=TASK_METADATA_PATH,
     )
@@ -55,7 +55,7 @@ def run_on_agentenv():
             elif index+1 > range_pair[1]:
                 break
             try_count = 0
-            while try_count < 5: # try at most 5 times for each task
+            while try_count < 3: # try at most 3 times for each task
                 try:
                     try_count += 1  
                     # setup task environment if needed
